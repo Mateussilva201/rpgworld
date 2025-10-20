@@ -1,313 +1,434 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ficha Genérica</title>
-<link rel="icon" type="image/png" href="/pasta.ficha/logo/Logo Dragão - Sem Fundo .png">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub das Fichas</title>
+  <link rel="stylesheet" href="/pasta.ficha/hub_fichas.css" />
+  <link rel="icon" type="image/png" href="pasta.ficha/logo/Logo Dragão - Sem Fundo .png" />
 
-:root {
-  --bg-dark: #1a0d2e;
-  --bg-panel: #27153d;
-  --accent-purple: #8e44ad;
-  --text-light: #f2e9ff;
-  --border-highlight: #b084eb;
-  --shadow: 0 0 10px rgba(142, 68, 173, 0.5);
-}
 
+</head>
+<style> 
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-decoration: none;
+   
 }
+
+
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-  font-family: 'MedievalSharp', cursive;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-header.cabecalho {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-  gap: 1rem;
-  border-bottom: 2px solid var(--accent-purple);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-  width: 100%;
-}
-
-header .logo {
-  width: 70px;
-  height: auto;
-}
-
-header h1 {
-  font-size: 2rem;
-  color: var(--accent-purple);
-  word-break: break-word;
-  text-align: center;
-}
-
-.btn-voltar {
-  display: flex;
-  justify-content: center;
-}
-
-.cta {
-  display: flex;
-  padding: 11px 33px;
-  font-size: 20px;
+  background-color: #111;
   color: white;
-  background: #6225e6;
-  transition: 0.5s;
-  box-shadow: 6px 6px 0 black;
-  transform: skewX(-15deg);
-  border: none;
-  cursor: pointer;
+  font-family: sans-serif;
+  padding: 20px;
+  
 }
-.cta .span { transform: skewX(15deg); }
-.cta:hover { box-shadow: 10px 10px 0 black; }
 
-main.ficha-container {
+.header-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
+justify-content: center;
   gap: 20px;
+ 
+  padding: 10px 0;
 }
 
-.linha, .trio {
+
+.logo {
+  height: 60px;
+  display: block;
+}
+
+
+h1 {
+  font-family: "Josefin Sans", sans-serif;  
+  font-style: normal;
+  font-weight: 650;
+  color: #ae00ff;
+  font-size: 50px;
+  margin: 0;
+
+}
+
+
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ae00ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #9000d3;
+}
+
+.lista-fichas {
+  min-height: 585px;
+  border-radius: 25px;
+  margin-top: 50px;
+  box-shadow: 0 0 25px 5px #7700ff;
+}
+
+ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 20px;
-  width: 100%;
+  padding: 20px;
+  justify-content: center;
 }
 
-.card {
-  flex: 1 1 300px;
-  background-color: var(--bg-panel);
-  border: 1px solid var(--border-highlight);
+ul li {
+  background-color: #313131;
+  padding: 15px 20px;
   border-radius: 10px;
-  padding: 1rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 10px #ae00ff4d;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  transition: transform 0.3s;
-}
-.card:hover { transform: translateY(-3px); }
-
-.card h2 {
-  color: var(--accent-purple);
-  border-bottom: 1px solid var(--border-highlight);
-  padding-bottom: 4px;
-  margin-bottom: 10px;
-  width: 100%;
-  text-align: center;
+  gap: 12px;
+  min-width: 200px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: aparecer 0.3s forwards;
 }
 
-label {
-  display: block;
-  color: var(--text-light);
-  margin-bottom: 8px;
-  width: 100%;
-  text-align: left;
+ul li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #6200ff80;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-input, textarea {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #1a0d2e;
-  border: 1px solid var(--border-highlight);
-  color: var(--text-light);
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  font-family: 'MedievalSharp', cursive;
-  font-size: 1rem;
-}
-
-textarea {
-  height: 150px;
-  resize: vertical;
-}
-
-
-.notas.card {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;
-}
-
-.notas.card textarea {
-  height: 300px;
-  min-height: 250px;
-}
-
-@media (max-width: 1200px) {
-  main.ficha-container { max-width: 1000px; }
-  .notas.card textarea { height: 280px; }
-}
-
-@media (max-width: 900px) {
-  header h1 { font-size: 1.8rem; }
-  .card { flex: 1 1 90%; }
-  textarea { height: 130px; }
-  .notas.card textarea { height: 250px; }
-}
-
-@media (max-width: 700px) {
-  header .logo { width: 60px; }
-  .cta { font-size: 16px; padding: 8px 20px; }
-  .card { padding: 0.8rem; }
-  .notas.card textarea { height: 230px; }
-}
-
-@media (max-width: 500px) {
-  header h1 { font-size: 1.5rem; }
-  body { padding: 0.5rem; }
-  .cta { font-size: 14px; }
-  textarea { height: 110px; }
-  .notas.card textarea { height: 200px; }
-}
-
-@media (max-width: 380px) {
-  header .logo { width: 50px; }
-  header h1 { font-size: 1.2rem; }
-  input, textarea { font-size: 0.9rem; }
-  .notas.card textarea { height: 180px; }
-}
-</style>
-</head>
-<body>
-<header class="cabecalho">
-  <img src="/pasta.ficha/logo/Logo Dragão - Sem Fundo .png" alt="Logo Dragão" class="logo">
-  <h1>Ficha de Personagem</h1>
-  <div class="btn-voltar">
-    <a href="/Hub_fichas.html">
-      <button class="cta"><span class="span">Voltar</span></button>
-    </a>
-  </div>
-</header>
-
-<main class="ficha-container">
-  <div class="linha">
-    <section class="pericias card">
-      <h2>Perícias</h2>
-      <label>Acrobacia (Des):<input type="number" name="pericia_acrobacia"></label>
-      <label>Arcanismo (Int):<input type="number" name="pericia_arcanismo"></label>
-      <label>Atuação (Car):<input type="number" name="pericia_atuacao"></label>
-      <label>Enganação (Car):<input type="number" name="pericia_enganacao"></label>
-      <label>Furtividade (Des):<input type="number" name="pericia_furtividade"></label>
-      <label>História (Int):<input type="number" name="pericia_historia"></label>
-      <label>Intimidação (Car):<input type="number" name="pericia_intimidacao"></label>
-      <label>Intuição (Sab):<input type="number" name="pericia_intuicao"></label>
-      <label>Investigação (Int):<input type="number" name="pericia_investigacao"></label>
-      <label>Lidar com Animais (Sab):<input type="number" name="pericia_animais"></label>
-      <label>Medicina (Sab):<input type="number" name="pericia_medicina"></label>
-      <label>Natureza (Int):<input type="number" name="pericia_natureza"></label>
-      <label>Percepção (Sab):<input type="number" name="pericia_percepcao"></label>
-      <label>Persuasão (Car):<input type="number" name="pericia_persuasao"></label>
-      <label>Prestidigitação (Des):<input type="number" name="pericia_prestidigitacao"></label>
-      <label>Religião (Int):<input type="number" name="pericia_religiao"></label>
-      <label>Sobrevivência (Sab):<input type="number" name="pericia_sobrevivencia"></label>
-    </section>
-
-    <section class="atributos card">
-      <h2>Atributos</h2>
-      <label>Força:<input type="number" name="forca"></label>
-      <label>Destreza:<input type="number" name="destreza"></label>
-      <label>Constituição:<input type="number" name="constituicao"></label>
-      <label>Inteligência:<input type="number" name="inteligencia"></label>
-      <label>Sabedoria:<input type="number" name="sabedoria"></label>
-      <label>Carisma:<input type="number" name="carisma"></label>
-    </section>
-
-    <section class="salvaguardas card">
-      <h2>Salvaguardas</h2>
-      <label>Força:<input type="number" name="salva_forca"></label>
-      <label>Destreza:<input type="number" name="salva_destreza"></label>
-      <label>Constituição:<input type="number" name="salva_constituicao"></label>
-      <label>Inteligência:<input type="number" name="salva_inteligencia"></label>
-      <label>Sabedoria:<input type="number" name="salva_sabedoria"></label>
-      <label>Carisma:<input type="number" name="salva_carisma"></label>
-    </section>
-
-    <section class="combate card">
-      <h2>Combate</h2>
-      <label>Classe de Armadura:<input type="number" name="ca"></label>
-      <label>Iniciativa:<input type="number" name="iniciativa"></label>
-      <label>Deslocamento:<input type="number" name="deslocamento"></label>
-      <label>PV Máximos:<input type="number" name="pv_max"></label>
-      <label>PV Atuais:<input type="number" name="pv"></label>
-      <label>PV Temporários:<input type="number" name="pv_temp"></label>
-    </section>
-  </div>
-
-  <div class="trio">
-    <section class="ataques card">
-      <h2>Ataques & Conjuração</h2>
-      <textarea name="ataques" placeholder="Ataques, magias..."></textarea>
-    </section>
-
-    <section class="equipamentos card">
-      <h2>Equipamentos</h2>
-      <textarea name="equipamentos" placeholder="Itens do personagem..."></textarea>
-    </section>
-
-    <section class="habilidades card">
-      <h2>Características & Talentos</h2>
-      <textarea name="habilidades" placeholder="Habilidades, talentos..."></textarea>
-    </section>
-  </div>
-
-  <section class="notas card">
-    <h2>Anotações</h2>
-    <textarea name="notas" placeholder="Notas adicionais..."></textarea>
-  </section>
-</main>
-
-<script>
-const fichaId = localStorage.getItem("fichaSelecionadaId");
-const STORAGE_KEY = "ficha_" + fichaId;
-const dadosSalvos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-
-window.addEventListener("DOMContentLoaded", () => {
-  const campos = document.querySelectorAll("input[name], textarea[name]");
-  campos.forEach(input => {
-    const nome = input.name;
-    if (dadosSalvos[nome]) input.value = dadosSalvos[nome];
-    input.addEventListener("input", salvarFicha);
-  });
-  const fichas = JSON.parse(localStorage.getItem("fichas") || "[]");
-  const ficha = fichas.find(f => f.id === fichaId);
-  if (ficha) {
-    document.title = ficha.nome;
-    const titulo = document.querySelector(".cabecalho h1");
-    if (titulo) titulo.textContent = ficha.nome;
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-});
-
-function salvarFicha() {
-  const campos = document.querySelectorAll("input[name], textarea[name]");
-  const dados = {};
-  campos.forEach(input => dados[input.name] = input.value);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
 }
-</script>
+
+li.fadeout {
+  opacity: 0 !important;
+  transform: scale(0.8) !important;
+  transition: all 0.3s ease;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ae00ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #9000d3;
+  transform: scale(1.05);
+}
+
+.nome-ficha {
+  cursor: text;
+  flex: 1;
+  font-size: 18px;
+}
+
+.input-edit {
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background-color: #333;
+  color: white;
+}
+
+.ficha-generica {
+  background-color: #e6e6fa;
+  border-left: 4px solid #9370db;
+}
+
+
+.container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  margin-right: 18px;
+  vertical-align: middle;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #ccc;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px rgb(183, 183, 183);
+  transition: all 0.2s ease;
+}
+
+
+.container input:checked + .checkmark {
+  background-image: linear-gradient(45deg, rgb(100, 61, 219), rgb(163, 152, 212));
+  box-shadow: 3px 3px 0px rgb(183, 183, 183);
+}
+
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+
+.container input:checked + .checkmark:after {
+  display: block;
+}
+.btns {
+display: flex;
+justify-content: center;
+
+}
+button {
+justify-content: center;
+font-family: "Josefin Sans", sans-serif;  
+box-shadow: 0 0 15px #6200ff80;
+
+}
+
+button:hover {
+background-color: #313131;
+
+
+}
+
+
+</style>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Menu de Fichas</h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="btns">
+      <a class="link" href="fichas.html"><button class="voltar"><span class="text">Voltar</span></button></a>   
+
+      <button id="addFichaGenerica"><span class="text">Criar Ficha Generica</span></button>
+      
+      <button id="removerFichasBtn"><span class="text">Remover Fichas Selecionadas</span></button>
+      <button id="selecionarTodasBtn"><span class="text">Selecionar Todas</span></button>
+    </div>
+    <div class="lista-fichas">
+    <ul id="listaFichas"></ul>
+    </div>
+  </main>
+
+  <script>let contadorFichas = 1;
+    const btnAdicionar = document.getElementById("addFichaBtn");
+    const btnRemover = document.getElementById("removerFichasBtn");
+    const lista = document.getElementById("listaFichas");
+    const btnSelecionarTodas = document.getElementById("selecionarTodasBtn");
+    const btnAdicionarGenerica = document.getElementById("addFichaGenerica");
+    
+    let isMouseDown = false;
+    let tudoSelecionado = false;
+    
+
+    function adicionarFicha(nome = "Ficha Nova", marcada = true, id = Date.now(), destino = "f_g.html") {
+      const novaFicha = document.createElement("li");
+      novaFicha.dataset.id = id;
+      novaFicha.dataset.destino = destino;
+    
+     
+      const labelContainer = document.createElement("label");
+      labelContainer.classList.add("container");
+    
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = marcada;
+    
+    
+      checkbox.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    
+      checkbox.addEventListener("change", salvarFichas);
+    
+      const checkmarkDiv = document.createElement("div");
+      checkmarkDiv.classList.add("checkmark");
+    
+      labelContainer.appendChild(checkbox);
+      labelContainer.appendChild(checkmarkDiv);
+    
+      
+      const textoFicha = document.createElement("span");
+      textoFicha.textContent = nome;
+      textoFicha.classList.add("nome-ficha");
+    
+     
+      textoFicha.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = textoFicha.textContent;
+        input.classList.add("input-edit");
+    
+        textoFicha.replaceWith(input);
+        input.focus();
+    
+        function salvar() {
+          textoFicha.textContent = input.value || nome;
+          input.replaceWith(textoFicha);
+          salvarFichas();
+        }
+    
+        input.addEventListener("blur", salvar);
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") salvar();
+        });
+      });
+    
+    
+      novaFicha.appendChild(labelContainer);
+      novaFicha.appendChild(textoFicha);
+      lista.appendChild(novaFicha);
+    
+    
+      novaFicha.addEventListener("click", (e) => {
+
+        if (
+          e.target.closest(".container") || 
+          e.target.tagName === "INPUT" ||
+          e.target.classList.contains("input-edit") ||
+          e.target.classList.contains("nome-ficha")
+        ) return;
+      
+        localStorage.setItem("fichaSelecionadaId", id);
+        window.location.href = destino;
+      });
+      
+      salvarFichas();
+    }
+    
+    
+    
+    
+    btnAdicionarGenerica.addEventListener("click", function () {
+      adicionarFicha("Ficha Genérica", false, Date.now(), "f_g.html");
+    });
+    
+    
+    btnRemover.addEventListener("click", function () {
+      const fichas = document.querySelectorAll("#listaFichas li");
+      fichas.forEach(ficha => {
+        const checkbox = ficha.querySelector("input[type='checkbox']");
+        if (checkbox.checked) {
+          ficha.classList.add("fadeout");
+          setTimeout(() => {
+            ficha.remove();
+            salvarFichas();
+          }, 300);
+        }
+      });
+      salvarFichas();
+    });
+    
+    
+    btnSelecionarTodas.addEventListener("click", () => {
+      const fichas = document.querySelectorAll("#listaFichas li input[type='checkbox']");
+      fichas.forEach(checkbox => {
+        checkbox.checked = tudoSelecionado;
+        
+      });
+    
+      tudoSelecionado = !tudoSelecionado;
+      btnSelecionarTodas.textContent = tudoSelecionado ? "Desmarcar Todas" : "Selecionar Todas";
+    
+
+      btnSelecionarTodas.classList.toggle("ativo", tudoSelecionado);
+    
+      salvarFichas();
+    });
+    
+    
+    lista.addEventListener("mousedown", function (e) {
+      if (e.target.closest(".nome-ficha")) return;
+      if (e.target.closest("li")) {
+        e.preventDefault();
+        isMouseDown = true;
+        toggleCheckbox(e.target.closest("li"));
+      }
+    });
+    
+    lista.addEventListener("mouseover", function (e) {
+      if (isMouseDown && !e.target.closest(".nome-ficha") && e.target.closest("li")) {
+        toggleCheckbox(e.target.closest("li"));
+      }
+    });
+    
+    document.addEventListener("mouseup", function () {
+      isMouseDown = false;
+    });
+    
+    function toggleCheckbox(li) {
+      const checkbox = li.querySelector("input[type='checkbox']");
+      if (checkbox) checkbox.checked = !checkbox.checked;
+    }
+    
+    
+    function salvarFichas() {
+      const fichas = [];
+      document.querySelectorAll("#listaFichas li").forEach(li => {
+        const nome = li.querySelector("span").textContent;
+        const marcada = li.querySelector("input[type='checkbox']").checked;
+        const id = li.dataset.id;
+        const destino = li.dataset.destino || "f_g.html"; // <- novo
+        fichas.push({ id, nome, marcada, destino });
+      });
+      localStorage.setItem("fichas", JSON.stringify(fichas));
+    }
+    
+ 
+    function carregarFichas() {
+      const fichasSalvas = JSON.parse(localStorage.getItem("fichas") || "[]");
+      fichasSalvas.forEach(ficha => {
+        adicionarFicha(ficha.nome, ficha.marcada, ficha.id, ficha.destino);
+      });
+    }
+    
+    window.addEventListener("DOMContentLoaded", carregarFichas);
+    
+    //o negocio da checkbox ta assim: quando eu clico ele fica selecionando e desselecionando, mas quando clico e arrasto para fora ele fica selecionado</script>
 </body>
+
 </html>
