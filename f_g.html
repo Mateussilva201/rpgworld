@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ficha Genérica</title>
   <link rel="icon" type="image/png" href="/pasta.ficha/logo/Logo Dragão - Sem Fundo .png" />
-  <style>/* Fonte medieval opcional (Google Fonts) */
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
     
     :root {
@@ -24,7 +24,7 @@
       margin: 0;
       padding: 0;
       text-decoration: none;  
-      /* outline: 2px solid red; */
+
     }
     
     ::selection {
@@ -205,7 +205,7 @@
       padding-bottom: 40px;
     }
     
-    /* Button */
+ 
     .cta {
       display: flex;
       padding: 11px 33px;
@@ -288,7 +288,7 @@
       }
     }
     
-    /* Fim Button */
+   
     
     .btn-voltar {
       margin: 0 1% 0 auto;
@@ -308,18 +308,18 @@
     main {
       display: flex;
       flex-wrap: wrap;
-      /* Permite que os cards pulem linha se necessário */
+  
       gap: 16px;
-      /* Espaço entre os cards */
+
       justify-content: space-evenly;
-      /* Distribui os cards */
+
       align-items: stretch;
-      /* Faz os cards se esticarem igualmente em altura */
+
     }
     
     .linha {
       flex: 1 1 300px;
-      /* Cresce, encolhe e começa com 300px */
+    
       min-width: 250px;
       max-width: 100%;
       background-color: #1a082f;
@@ -354,7 +354,7 @@
     
     .ataques {
       position: absolute;
-      /* top: 61%; */
+  
       top: 51%;
       left: 25%;
       width: 23.60%;
@@ -364,7 +364,7 @@
     
     .equipamentos {
       position: absolute;
-      /* top: 61%; */
+   
       top: 51%;
       right: 27%;
       width: 23.60%;
@@ -374,7 +374,7 @@
     
     .habilidades {
       position: absolute;
-      /* top: 61%; */
+
       top: 51%;
       left: 74.50%;
       width: 23.6%;
@@ -384,11 +384,11 @@
     
     .notas {
       position: absolute;
-      /* top: 114.2%; */
+
       top: 100%;
       right: 2%;
       width: 73.25%;
-      /* height: 40.2%; */
+
       height: 30.8%;
       padding-bottom: 2%;
     }
@@ -400,7 +400,7 @@
       outline: none;
       border: none;
       background: #2c003e;
-      /* substitua pela cor que você quiser */
+
       color: white;
       padding: 5px;
       border-radius: 10px;
@@ -414,8 +414,53 @@
     
     input[type="number"] {
       -moz-appearance: textfield;
-      /* Firefox */
+   
     }
+    
+@media screen and (max-width:900px) {
+  .ataques {
+      position: absolute;
+    
+      top: 51%;
+      left: 25%;
+      width: 23.60%;
+      height: 50.1%;
+      padding-bottom: 2%;
+    }
+    
+    .equipamentos {
+      position: absolute;
+
+      top: 58%;
+      right: 30%;
+      width: 10.60%;
+      height: 50.1%;
+      padding-bottom: 2%;
+    }
+    
+    .habilidades {
+      position: absolute;
+
+      top: 56%;
+      left: 74%;
+      width: 23.6%;
+      height: 50.1%;
+      padding-bottom: 2%;
+    }
+    
+    .notas {
+      position: absolute;
+      
+      top: 100%;
+      right: 2%;
+      width: 73.25%;
+      /* height: 40.2%; */
+      height: 30.8%;
+      padding-bottom: 2%;
+    }
+    
+}
+
     
     
     
@@ -503,8 +548,8 @@
         <label>PV Atuais: <input type="number" name="pv"></label>
         <label>PV Temporários: <input type="number" name="pv_temp"></label>
       </section>
-
-      <div class="trio">
+ 
+      <div class="trio"> 
         <section class="ataques card">
           <h2>Ataques & Conjuração</h2>
           <textarea name="ataques" placeholder="Ataques, magias..."></textarea>
@@ -527,18 +572,18 @@
         <textarea name="notas" placeholder="Notas adicionais..."></textarea>
       </section>
 
-    </div>
+    </div> 
 
 
   </main>
-  <script>// ID da ficha atual selecionada
+  <script>
     const fichaId = localStorage.getItem("fichaSelecionadaId");
     const STORAGE_KEY = "ficha_" + fichaId;
     
-    // Recupera os dados salvos para essa ficha
+   
     const dadosSalvos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     
-    // Ao carregar, preenche os campos
+
     window.addEventListener("DOMContentLoaded", () => {
       const campos = document.querySelectorAll("input[name], textarea[name]");
     
@@ -551,7 +596,7 @@
         input.addEventListener("input", salvarFicha);
       });
     
-      // Exibe o nome da ficha no título ou header
+     
       const fichas = JSON.parse(localStorage.getItem("fichas") || "[]");
       const ficha = fichas.find((f) => f.id === fichaId);
       if (ficha) {
@@ -573,7 +618,7 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
     }
     
-    // Limpar todos os dados da ficha
+
     const limparBtn = document.getElementById("limpar-ficha");
     if (limparBtn) {
       limparBtn.addEventListener("click", () => {
